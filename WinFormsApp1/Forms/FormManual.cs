@@ -2,11 +2,17 @@ using System.Windows.Forms;
 
 namespace QuestProject.Forms
 {
-    public partial class FormManual : BaseForm
+    public partial class FormManual : Form
     {
         public FormManual()
         {
-            SetPageTitle("MANUAL");
+            InitializeBaseComponent();
+        }
+
+
+        private void InitializeBaseComponent()
+        {
+
         }
     }
 }

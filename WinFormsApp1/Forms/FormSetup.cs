@@ -2,7 +2,7 @@ using System.Windows.Forms;
 
 namespace QuestProject.Forms
 {
-    public partial class FormSetup : BaseForm
+    public partial class FormSetup : Form
     {
         private TabControl? tabControl1;
         private TabPage? tabPage1;
@@ -11,7 +11,7 @@ namespace QuestProject.Forms
 
         public FormSetup()
         {
-            SetPageTitle("SETUP");
+            //SetPageTitle("SETUP");
             InitializeComponent();
         }
 
@@ -67,22 +67,21 @@ namespace QuestProject.Forms
             button1.Text = "button1";
             button1.UseVisualStyleBackColor = true;
             // 
+            // 
             // FormSetup
             // 
-            // 기존 ClientSize 설정 주석 처리 후 UserControl Size 설정 추가
-            // ClientSize = new Size(800, 530);
-            Size = new Size(800, 530);
-            Controls.Add(tabControl1);
-            Name = "FormSetup";
-            Controls.SetChildIndex(tabControl1, 0);
-            if (lblTitle != null)
-            {
-                Controls.SetChildIndex(lblTitle, 0);
-            }
-            tabControl1.ResumeLayout(false);
-            tabPage2.ResumeLayout(false);
-            ResumeLayout(false);
-            PerformLayout();
+            this.ClientSize = new Size(800, 530);
+            this.Controls.Add(this.tabControl1);
+            this.Name = "FormSetup";
+            this.Controls.SetChildIndex(this.tabControl1, 0);
+            //if (this.lblTitle != null)
+            //{
+            //    this.Controls.SetChildIndex(this.lblTitle, 0);
+            //}
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage2.ResumeLayout(false);
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
 
         private void FormSetup_Load(object sender, EventArgs e)

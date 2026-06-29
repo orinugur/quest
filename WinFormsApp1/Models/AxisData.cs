@@ -11,7 +11,8 @@ namespace QuestProject.Models
         public double Speed { get; set; } = 100.0;
         public double Acceleration { get; set; } = 500.0;
         public double Deceleration { get; set; } = 500.0;
-        
+        public double LoadingPosition { get; set; } = 0.0;
+
         // 상태값 (예: 원점 복귀 완료 여부, 알람 상태 등)
         public bool IsHomed { get; set; } = false;
         public bool IsAlarm { get; set; } = false;

@@ -1,6 +1,6 @@
 namespace QuestProject.Forms
 {
-    partial class Main
+    partial class FormMain
     {
         private System.ComponentModel.IContainer components = null;
 

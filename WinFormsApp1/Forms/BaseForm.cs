@@ -3,9 +3,7 @@ using System.Windows.Forms;
 
 namespace QuestProject.Forms
 {
-    // 기존 Form 상속 구조 주석 처리 후 UserControl 상속으로 변경
-    // public class BaseForm : Form
-    public class BaseForm : UserControl
+    public class BaseForm : Form
     {
         protected Label? lblTitle;
 
@@ -30,10 +28,8 @@ namespace QuestProject.Forms
             this.lblTitle.ForeColor = Color.Black;
 
             // BaseForm 기본 설정
-            // 기존 ClientSize 및 FormBorderStyle 설정 주석 처리 후 UserControl 설정 추가
-            // this.ClientSize = new Size(800, 530);
-            // this.FormBorderStyle = FormBorderStyle.None;
-            this.Size = new Size(800, 530);
+            this.ClientSize = new Size(800, 530);
+            this.FormBorderStyle = FormBorderStyle.None;
             this.Controls.Add(this.lblTitle);
             this.Name = "BaseForm";
             this.ResumeLayout(false);
