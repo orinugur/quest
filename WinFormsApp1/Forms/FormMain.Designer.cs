@@ -138,14 +138,14 @@ namespace QuestProject.Forms
             label1.Text = "Main Display";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // Main
+            // FormMain
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(784, 562);
             Controls.Add(pnlContent);
             Controls.Add(pnlBottom);
-            Name = "Main";
+            Name = "FormMain";
             Text = "Form1";
             pnlBottom.ResumeLayout(false);
             pnlContent.ResumeLayout(false);

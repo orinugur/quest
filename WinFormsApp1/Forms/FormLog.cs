@@ -6,14 +6,7 @@ namespace QuestProject.Forms
     {
         public FormLog()
         {
-            InitializeBaseComponent();
-        }
-
-
-        private void InitializeBaseComponent()
-        {
-
+            InitializeComponent();
         }
     }
-
 }

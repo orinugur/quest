@@ -6,13 +6,7 @@ namespace QuestProject.Forms
     {
         public FormManual()
         {
-            InitializeBaseComponent();
-        }
-
-
-        private void InitializeBaseComponent()
-        {
-
+            InitializeComponent();
         }
     }
 }

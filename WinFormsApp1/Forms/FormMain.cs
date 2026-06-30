@@ -3,9 +3,9 @@ using System.Windows.Forms;
 
 namespace QuestProject.Forms
 {
-    public partial class Main : Form
+    public partial class FormMain : Form
     {
-        public Main()
+        public FormMain()
         {
             InitializeComponent();
         }
