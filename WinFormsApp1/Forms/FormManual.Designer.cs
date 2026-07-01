@@ -28,12 +28,34 @@ namespace QuestProject.Forms
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "FormManual";
+            label9 = new Label();
+            SuspendLayout();
+            // 
+            // label9
+            // 
+            label9.AutoSize = true;
+            label9.Font = new Font("¸¼Àº °íµñ", 20F);
+            label9.Location = new Point(12, 9);
+            label9.Name = "label9";
+            label9.Size = new Size(109, 37);
+            label9.TabIndex = 3;
+            label9.Text = "Manual";
+            label9.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // FormManual
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(800, 450);
+            Controls.Add(label9);
+            Name = "FormManual";
+            Text = "FormManual";
+            ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
+
+        private Label label9;
     }
 }
