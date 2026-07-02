@@ -1,0 +1,55 @@
+using System;
+using System.Diagnostics;
+using System.IO;
+
+namespace QuestProject.Common
+{
+    public static class LogHelper
+    {
+        // 로그 저장 경로
+        private static readonly string LogDir = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
+
+        // 전역 로깅 이벤트
+        public static event Action<string, string>? OnLogRequested;
+
+        // 시스템 시작 시 호출하여 초기화
+        public static void Initialize()
+        {
+            if (!Directory.Exists(LogDir))
+                Directory.CreateDirectory(LogDir);
+
+            // 이벤트에 파일 쓰기 메서드 연결
+            OnLogRequested += WriteLogToFile;
+        }
+
+        public static void WriteLog(string category, string message)
+        {
+            OnLogRequested?.Invoke(category, message); 
+        }
+        private static void WriteLogToFile(string category, string message)
+        {
+            string filePath = Path.Combine(LogDir, $"{DateTime.Now:yyyy-MM-dd}.log");
+            string logText = $"[{DateTime.Now:HH:mm:ss}] [{category}] {message}{Environment.NewLine}";
+            
+            try { File.AppendAllText(filePath, logText); }
+            catch { /* IO 에러 발생 시 프로그램 종료 방지 */ }
+        }
+
+        // 오래된 로그 삭제 메서드 (Main에서 호출)
+        public static void DeleteOldLogs(int monthsToKeep)
+        {
+            try
+            {
+                if (!Directory.Exists(LogDir)) return;
+                
+                DateTime threshold = DateTime.Now.AddMonths(-monthsToKeep);
+                foreach (var file in new DirectoryInfo(LogDir).GetFiles("*.log"))
+                {
+                    if (file.LastWriteTime < threshold) file.Delete();
+                }
+            }
+            catch { /* 권한 문제 등 무시 */ }
+        }
+
+    }
+}

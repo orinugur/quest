@@ -15,5 +15,7 @@ namespace QuestProject
             ApplicationConfiguration.Initialize();
             Application.Run(new FormMain());
         }
+        
     }
+    
 }

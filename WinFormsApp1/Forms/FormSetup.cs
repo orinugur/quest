@@ -53,6 +53,7 @@ namespace QuestProject.Forms
                     string selectedFilePath = saveFileDialog.FileName;
                     SaveSettings(selectedFilePath);
                     MessageBox.Show("환경설정이 저장되었습니다.", "저장 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LogHelper.WriteLog("SetUp", "Seting Saved");
                 }
             }
         }
@@ -71,6 +72,7 @@ namespace QuestProject.Forms
                     string selectedFilePath = openFileDialog.FileName;
                     LoadSettings(selectedFilePath);
                     MessageBox.Show("환경설정이 로드되었습니다.", "로드 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LogHelper.WriteLog("SetUp", "Seting Loaded");
                 }
             }
         }
