@@ -9,8 +9,9 @@ namespace QuestProject.Forms
             public FormMain()
             {
                 InitializeComponent();
-            this.Load += FormMain_Load;
-        }
+                this.Load += FormMain_Load;
+                this.FormClosed += FormMain_FormClosed;
+            }
 
         private Form? activeForm = null;
 
@@ -68,10 +69,10 @@ namespace QuestProject.Forms
         }
         private void FormMain_Load(object sender, EventArgs e)
         {
-            // 1. Logger 초기화 (이벤트 구독 시작)
+            // 초기화 
             LogHelper.Initialize();
 
-            // 2. config.ini 에서 로그 삭제 주기 읽어오기 (기본값 3)
+            // config.ini 에서 로그 삭제 주기 읽어오기
             int retentionMonths = 3;
             var iniData = IniHelper.Load("config.ini");
             if (iniData.TryGetValue("System", out var sysConfig) && 
@@ -81,11 +82,25 @@ namespace QuestProject.Forms
                 retentionMonths = parsed;
             }
 
-            // 3. 오래된 로그 삭제 실행
+            // 로그 삭제 주기 실행
             LogHelper.DeleteOldLogs(retentionMonths);
 
-            // 4. 시스템 시작 로그 기록 (이벤트 호출)
+            // 프로그램 시작 로그
             LogHelper.WriteLog("system", "program start");
         }
+        
+        // Form 종료시 실행
+        private void FormMain_FormClosed(object? sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                LogHelper.WriteLog("System", "program Exit");
+            }
+            catch
+            {
+                
+            }
+        }
+        
     }
 }

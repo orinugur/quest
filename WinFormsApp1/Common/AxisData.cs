@@ -1,4 +1,4 @@
-namespace QuestProject.Models
+namespace QuestProject.Common
 {
     /// <summary>
     /// 모터 축(Axis)의 데이터를 관리하는 모델 클래스입니다.
