@@ -78,6 +78,7 @@ namespace QuestProject.Forms
             btnQuery.TabIndex = 2;
             btnQuery.Text = "Á¶È¸ (SEARCH)";
             btnQuery.UseVisualStyleBackColor = false;
+            btnQuery.Click += btnQuery_Click;
             // 
             // lblSelectDate
             // 
@@ -112,6 +113,7 @@ namespace QuestProject.Forms
             Controls.Add(label9);
             Name = "FormLog";
             Text = "FormLog";
+            this.Load += FormLog_Load;
             pnlTopBar.ResumeLayout(false);
             pnlTopBar.PerformLayout();
             ResumeLayout(false);

@@ -35,6 +35,29 @@ namespace QuestProject.Common
             catch { /* IO 에러 발생 시 프로그램 종료 방지 */ }
         }
 
+        // 로그 파일 읽기 메서드
+        public static string ReadLog(DateTime date)
+        {
+            try
+            {
+                if (!Directory.Exists(LogDir)) return string.Empty;
+                
+                string filePath = Path.Combine(LogDir, $"{date:yyyy-MM-dd}.log");
+                if (!File.Exists(filePath)) return string.Empty;
+                
+                // 로그를 실시간으로 쓰고 있을 수 있으므로 FileShare.ReadWrite로 락 충돌 방지
+                using (var fs = new FileStream(filePath, FileMode.Open, FileAccess.Read, FileShare.ReadWrite))
+                using (var sr = new StreamReader(fs, System.Text.Encoding.UTF8))
+                {
+                    return sr.ReadToEnd();
+                }
+            }
+            catch (Exception ex)
+            {
+                return $"로그 읽기 중 오류 발생: {ex.Message}";
+            }
+        }
+
         // 오래된 로그 삭제 메서드 (Main에서 호출)
         public static void DeleteOldLogs(int monthsToKeep)
         {
