@@ -22,6 +22,25 @@ namespace QuestProject.Common
             OnLogRequested += WriteLogToFile;
         }
 
+        public static List<DateTime> GetAvailableLogDates()
+        {
+            var dates = new List<DateTime>();
+            if (!Directory.Exists(LogDir)) return dates;
+
+            // Logs 폴더 내의 모든 .log 파일을 읽어옵니다.
+            foreach (var file in new DirectoryInfo(LogDir).GetFiles("*.log"))
+            {
+                string fileName = Path.GetFileNameWithoutExtension(file.Name); // 예: 2024-05-20
+                if (DateTime.TryParseExact(fileName, "yyyy-MM-dd", null, System.Globalization.DateTimeStyles.None, out DateTime date))
+                {
+                    dates.Add(date);
+                }
+            }
+
+            // 최신 날짜가 위로 오도록 내림차순 정렬
+            dates.Sort((a, b) => b.CompareTo(a));
+            return dates;
+        }
         public static void WriteLog(string category, string message)
         {
             OnLogRequested?.Invoke(category, message); 

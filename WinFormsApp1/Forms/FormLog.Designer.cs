@@ -29,8 +29,8 @@ namespace QuestProject.Forms
         private void InitializeComponent()
         {
             label9 = new Label();
-            dtpLogDate = new DateTimePicker();
             pnlTopBar = new Panel();
+            comboBox1 = new ComboBox();
             btnQuery = new Button();
             lblSelectDate = new Label();
             txtLogOutput = new TextBox();
@@ -48,23 +48,24 @@ namespace QuestProject.Forms
             label9.Text = "Log";
             label9.TextAlign = ContentAlignment.TopCenter;
             // 
-            // dtpLogDate
-            // 
-            dtpLogDate.Font = new Font("¸¼Àº °íµñ", 9.75F);
-            dtpLogDate.Location = new Point(120, 12);
-            dtpLogDate.Name = "dtpLogDate";
-            dtpLogDate.Size = new Size(200, 25);
-            dtpLogDate.TabIndex = 1;
-            // 
             // pnlTopBar
             // 
+            pnlTopBar.Controls.Add(comboBox1);
             pnlTopBar.Controls.Add(btnQuery);
-            pnlTopBar.Controls.Add(dtpLogDate);
             pnlTopBar.Controls.Add(lblSelectDate);
             pnlTopBar.Location = new Point(18, 49);
             pnlTopBar.Name = "pnlTopBar";
             pnlTopBar.Size = new Size(770, 50);
             pnlTopBar.TabIndex = 5;
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(117, 10);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(200, 23);
+            comboBox1.TabIndex = 3;
+            comboBox1.SelectedIndexChanged += comboBox1_SelectedIndexChanged;
             // 
             // btnQuery
             // 
@@ -113,7 +114,7 @@ namespace QuestProject.Forms
             Controls.Add(label9);
             Name = "FormLog";
             Text = "FormLog";
-            this.Load += FormLog_Load;
+            Load += FormLog_Load;
             pnlTopBar.ResumeLayout(false);
             pnlTopBar.PerformLayout();
             ResumeLayout(false);
@@ -123,10 +124,10 @@ namespace QuestProject.Forms
         #endregion
 
         private Label label9;
-        private DateTimePicker dtpLogDate;
         private Panel pnlTopBar;
         private Button btnQuery;
         private Label lblSelectDate;
         private TextBox txtLogOutput;
+        private ComboBox comboBox1;
     }
 }
