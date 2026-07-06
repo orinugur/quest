@@ -80,6 +80,7 @@ namespace QuestProject.Common
         // 오래된 로그 삭제 메서드 (Main에서 호출)
         public static void DeleteOldLogs(int monthsToKeep)
         {
+            if (monthsToKeep <= 0) return; // 0 이하인 경우 자동 삭제 안 함 (무제한)
             try
             {
                 if (!Directory.Exists(LogDir)) return;
@@ -91,6 +92,24 @@ namespace QuestProject.Common
                 }
             }
             catch { /* 권한 문제 등 무시 */ }
+        }
+
+        // 모든 로그 일괄 삭제 메서드
+        public static void DeleteAllLogs()
+        {
+            if (!Directory.Exists(LogDir)) return;
+            
+            foreach (var file in new DirectoryInfo(LogDir).GetFiles("*.log"))
+            {
+                try
+                {
+                    file.Delete();
+                }
+                catch
+                {
+                    // 현재 쓰고 있는 파일 등 삭제할 수 없는 파일은 예외 처리하고 계속 진행
+                }
+            }
         }
 
     }

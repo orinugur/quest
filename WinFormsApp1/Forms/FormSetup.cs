@@ -16,10 +16,38 @@ namespace QuestProject.Forms
 
         private void FormSetup_Load(object sender, EventArgs e)
         {
+            // 콤보박스 아이템 구성 (0~12 개월 및 직접입력)
+            comboBox1.Items.Clear();
+            for (int i = 0; i <= 12; i++)
+            {
+                comboBox1.Items.Add($"{i} 개월");
+            }
+            comboBox1.Items.Add("직접입력");
+            comboBox1.SelectedIndex = 3; // 기본값 3개월
+
+            // 콤보박스 선택 변경 이벤트 직접 연결
+            comboBox1.SelectedIndexChanged += ComboBox1_SelectedIndexChanged;
+
             string defaultPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "config.ini");
             if (File.Exists(defaultPath))
             {
                 LoadSettings(defaultPath);
+            }
+        }
+
+        // 콤보박스 선택에 따라 직접입력 텍스트 박스 표시 제어
+        private void ComboBox1_SelectedIndexChanged(object? sender, EventArgs e)
+        {
+            if (comboBox1.SelectedItem?.ToString() == "직접입력")
+            {
+                txtCustomRetention.Visible = true;
+                lblCustomUnit.Visible = true;
+                txtCustomRetention.Focus();
+            }
+            else
+            {
+                txtCustomRetention.Visible = false;
+                lblCustomUnit.Visible = false;
             }
         }
 
@@ -119,6 +147,38 @@ namespace QuestProject.Forms
                     { "LoadingPosition", numericUpDown16.Value.ToString() }
                 };
 
+                // System (로그 삭제 주기)
+                int retentionMonths = 0;
+                if (comboBox1.SelectedItem?.ToString() == "직접입력")
+                {
+                    if (int.TryParse(txtCustomRetention.Text, out int customValue) && customValue >= 0)
+                    {
+                        retentionMonths = customValue;
+                    }
+                    else
+                    {
+                        MessageBox.Show("직접 입력한 삭제 주기가 올바르지 않습니다. 0 이상의 숫자를 입력해주세요.", "입력 오류", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
+                }
+                else
+                {
+                    string? selectedStr = comboBox1.SelectedItem?.ToString();
+                    if (!string.IsNullOrEmpty(selectedStr))
+                    {
+                        string numericPart = new string(selectedStr.Where(char.IsDigit).ToArray());
+                        if (int.TryParse(numericPart, out int parsedVal))
+                        {
+                            retentionMonths = parsedVal;
+                        }
+                    }
+                }
+
+                data["System"] = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                {
+                    { "LogRetentionMonths", retentionMonths.ToString() }
+                };
+
                 IniHelper.Save(filePath, data);
             }
             catch (Exception ex)
@@ -172,10 +232,55 @@ namespace QuestProject.Forms
                     if (axisT.TryGetValue("LoadingPosition", out var valLoading) && decimal.TryParse(valLoading, out var dLoading)) numericUpDown16.Value = dLoading;
                 }
 
+                // System (로그 삭제 주기)
+                if (data.TryGetValue("System", out var systemSection))
+                {
+                    if (systemSection.TryGetValue("LogRetentionMonths", out var valLogRetention) && int.TryParse(valLogRetention, out int retentionMonths))
+                    {
+                        if (retentionMonths >= 0 && retentionMonths <= 12)
+                        {
+                            comboBox1.SelectedIndex = retentionMonths;
+                            txtCustomRetention.Visible = false;
+                            lblCustomUnit.Visible = false;
+                        }
+                        else
+                        {
+                            comboBox1.SelectedItem = "직접입력";
+                            txtCustomRetention.Text = retentionMonths.ToString();
+                            txtCustomRetention.Visible = true;
+                            lblCustomUnit.Visible = true;
+                        }
+                    }
+                }
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show($"설정을 로드하는 중 오류가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        // 전체 로그 삭제 버튼 클릭 이벤트
+        private void btnDeleteAllLogs_Click(object sender, EventArgs e)
+        {
+            DialogResult result = MessageBox.Show(
+                "저장된 모든 로그 파일을 삭제하시겠습니까?\n이 작업은 되돌릴 수 없습니다.", 
+                "로그 일괄 삭제 확인", 
+                MessageBoxButtons.OKCancel, 
+                MessageBoxIcon.Warning);
+
+            if (result == DialogResult.OK)
+            {
+                try
+                {
+                    LogHelper.DeleteAllLogs();
+                    MessageBox.Show("모든 로그 파일이 삭제되었습니다.", "삭제 완료", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    LogHelper.WriteLog("System", "All log files deleted manually.");
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"로그 삭제 중 오류가 발생했습니다: {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 

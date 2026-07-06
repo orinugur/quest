@@ -48,6 +48,13 @@ namespace QuestProject.Forms
             numericUpDown10 = new NumericUpDown();
             tabPage2 = new TabPage();
             label9 = new Label();
+            groupBox5 = new GroupBox();
+            comboBox1 = new ComboBox();
+            label18 = new Label();
+            txtCustomRetention = new TextBox();
+            lblCustomUnit = new Label();
+            btnDeleteAllLogs = new Button();
+            btnSaveLog = new Button();
             tableLayoutPanel1 = new TableLayoutPanel();
             groupBox1 = new GroupBox();
             label1 = new Label();
@@ -129,11 +136,14 @@ namespace QuestProject.Forms
             // 
             button1.BackColor = Color.SkyBlue;
             button1.FlatStyle = FlatStyle.Flat;
+            button1.FlatAppearance.BorderColor = Color.Gray;
+            button1.FlatAppearance.BorderSize = 1;
             button1.Font = new Font("맑은 고딕", 12F, FontStyle.Bold);
             button1.Location = new Point(96, 250);
             button1.Name = "button1";
             button1.Size = new Size(84, 40);
             button1.TabIndex = 15;
+            button1.TabStop = false;
             button1.Text = "ＬＯＡＤ";
             button1.UseVisualStyleBackColor = false;
             button1.Click += button1_Click;
@@ -142,11 +152,14 @@ namespace QuestProject.Forms
             // 
             btnSaveAxis.BackColor = Color.SkyBlue;
             btnSaveAxis.FlatStyle = FlatStyle.Flat;
+            btnSaveAxis.FlatAppearance.BorderColor = Color.Gray;
+            btnSaveAxis.FlatAppearance.BorderSize = 1;
             btnSaveAxis.Font = new Font("맑은 고딕", 12F, FontStyle.Bold);
             btnSaveAxis.Location = new Point(6, 250);
             btnSaveAxis.Name = "btnSaveAxis";
             btnSaveAxis.Size = new Size(84, 40);
             btnSaveAxis.TabIndex = 14;
+            btnSaveAxis.TabStop = false;
             btnSaveAxis.Text = "ＳＡＶＥ";
             btnSaveAxis.UseVisualStyleBackColor = false;
             btnSaveAxis.Click += btnSaveAxis_Click;
@@ -235,14 +248,95 @@ namespace QuestProject.Forms
             // 
             // tabPage2
             // 
+            tabPage2.Controls.Add(groupBox5);
+            tabPage2.Controls.Add(btnSaveLog);
             tabPage2.Location = new Point(4, 24);
             tabPage2.Name = "tabPage2";
             tabPage2.Padding = new Padding(3);
-            tabPage2.Size = new Size(762, 422);
+            tabPage2.Size = new Size(762, 382);
             tabPage2.TabIndex = 1;
             tabPage2.Text = "기타";
             tabPage2.UseVisualStyleBackColor = true;
             tabPage2.Click += tabPage2_Click;
+            // 
+            // groupBox5
+            // 
+            groupBox5.Controls.Add(label18);
+            groupBox5.Controls.Add(comboBox1);
+            groupBox5.Controls.Add(txtCustomRetention);
+            groupBox5.Controls.Add(lblCustomUnit);
+            groupBox5.Controls.Add(btnDeleteAllLogs);
+            groupBox5.Location = new Point(6, 6);
+            groupBox5.Name = "groupBox5";
+            groupBox5.Size = new Size(750, 92);
+            groupBox5.TabIndex = 0;
+            groupBox5.TabStop = false;
+            groupBox5.Text = "로그 저장 기간 및 삭제 주기";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Location = new Point(196, 39);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 1;
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(18, 42);
+            label18.Name = "label18";
+            label18.Size = new Size(172, 15);
+            label18.TabIndex = 2;
+            label18.Text = "로그 삭제 주기 (단위: 개월, M)";
+            // 
+            // txtCustomRetention
+            // 
+            txtCustomRetention.Location = new Point(325, 39);
+            txtCustomRetention.Name = "txtCustomRetention";
+            txtCustomRetention.Size = new Size(60, 23);
+            txtCustomRetention.TabIndex = 3;
+            txtCustomRetention.Visible = false;
+            // 
+            // lblCustomUnit
+            // 
+            lblCustomUnit.AutoSize = true;
+            lblCustomUnit.Location = new Point(390, 42);
+            lblCustomUnit.Name = "lblCustomUnit";
+            lblCustomUnit.Size = new Size(30, 15);
+            lblCustomUnit.TabIndex = 4;
+            lblCustomUnit.Text = "개월";
+            lblCustomUnit.Visible = false;
+            // 
+            // btnDeleteAllLogs
+            // 
+            btnDeleteAllLogs.BackColor = Color.LightCoral;
+            btnDeleteAllLogs.FlatStyle = FlatStyle.Flat;
+            btnDeleteAllLogs.Font = new Font("맑은 고딕", 9.75F, FontStyle.Bold);
+            btnDeleteAllLogs.Location = new Point(480, 35);
+            btnDeleteAllLogs.Name = "btnDeleteAllLogs";
+            btnDeleteAllLogs.Size = new Size(130, 30);
+            btnDeleteAllLogs.TabIndex = 5;
+            btnDeleteAllLogs.TabStop = false;
+            btnDeleteAllLogs.Text = "전체 로그 삭제";
+            btnDeleteAllLogs.UseVisualStyleBackColor = false;
+            btnDeleteAllLogs.Click += btnDeleteAllLogs_Click;
+            // 
+            // btnSaveLog
+            // 
+            btnSaveLog.BackColor = Color.SkyBlue;
+            btnSaveLog.FlatStyle = FlatStyle.Flat;
+            btnSaveLog.FlatAppearance.BorderColor = Color.Gray;
+            btnSaveLog.FlatAppearance.BorderSize = 1;
+            btnSaveLog.Font = new Font("맑은 고딕", 12F, FontStyle.Bold);
+            btnSaveLog.Location = new Point(6, 110);
+            btnSaveLog.Name = "btnSaveLog";
+            btnSaveLog.Size = new Size(84, 40);
+            btnSaveLog.TabIndex = 6;
+            btnSaveLog.TabStop = false;
+            btnSaveLog.Text = "ＳＡＶＥ";
+            btnSaveLog.UseVisualStyleBackColor = false;
+            btnSaveLog.Click += btnSaveAxis_Click;
             // 
             // label9
             // 
@@ -597,5 +691,12 @@ namespace QuestProject.Forms
         private NumericUpDown numericUpDown3;
         private Label label4;
         private NumericUpDown numericUpDown4;
+        private GroupBox groupBox5;
+        private Label label18;
+        private ComboBox comboBox1;
+        private TextBox txtCustomRetention;
+        private Label lblCustomUnit;
+        private Button btnDeleteAllLogs;
+        private Button btnSaveLog;
     }
 }
