@@ -115,7 +115,7 @@ namespace QuestProject.Forms
                 data["Axis X"] = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
                 {
                     { "MaxSpeed", numericUpDown6.Value.ToString() },
-                    { "LimitMin", numericUpDown7.Value.ToString() },
+                    { "LimitMin", (-1 * numericUpDown7.Value).ToString() },
                     { "LimitMax", numericUpDown8.Value.ToString() },
                     { "LoadingPosition", numericUpDown10.Value.ToString() }
                 };
@@ -124,7 +124,7 @@ namespace QuestProject.Forms
                 data["Axis Y"] = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
                 {
                     { "MaxSpeed", numericUpDown1.Value.ToString() },
-                    { "LimitMin", numericUpDown2.Value.ToString() },
+                    { "LimitMin", (-1 * numericUpDown2.Value).ToString() },
                     { "LimitMax", numericUpDown3.Value.ToString() },
                     { "LoadingPosition", numericUpDown4.Value.ToString() }
                 };
@@ -133,7 +133,7 @@ namespace QuestProject.Forms
                 data["Axis Z"] = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
                 {
                     { "MaxSpeed", numericUpDown5.Value.ToString() },
-                    { "LimitMin", numericUpDown9.Value.ToString() },
+                    { "LimitMin", (-1 * numericUpDown9.Value).ToString() },
                     { "LimitMax", numericUpDown11.Value.ToString() },
                     { "LoadingPosition", numericUpDown12.Value.ToString() }
                 };
@@ -142,7 +142,7 @@ namespace QuestProject.Forms
                 data["Axis T"] = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
                 {
                     { "MaxSpeed", numericUpDown13.Value.ToString() },
-                    { "LimitMin", numericUpDown14.Value.ToString() },
+                    { "LimitMin", (-1 * numericUpDown14.Value).ToString() },
                     { "LimitMax", numericUpDown15.Value.ToString() },
                     { "LoadingPosition", numericUpDown16.Value.ToString() }
                 };
@@ -203,7 +203,7 @@ namespace QuestProject.Forms
                 if (data.TryGetValue("Axis X", out var axisX))
                 {
                     if (axisX.TryGetValue("MaxSpeed", out var valMaxSpeed) && decimal.TryParse(valMaxSpeed, out var dMaxSpeed)) numericUpDown6.Value = dMaxSpeed;
-                    if (axisX.TryGetValue("LimitMin", out var valLimitMin) && decimal.TryParse(valLimitMin, out var dLimitMin)) numericUpDown7.Value = dLimitMin;
+                    if (axisX.TryGetValue("LimitMin", out var valLimitMin) && decimal.TryParse(valLimitMin, out var dLimitMin)) numericUpDown7.Value = Math.Abs(dLimitMin);
                     if (axisX.TryGetValue("LimitMax", out var valLimitMax) && decimal.TryParse(valLimitMax, out var dLimitMax)) numericUpDown8.Value = dLimitMax;
                     if (axisX.TryGetValue("LoadingPosition", out var valLoading) && decimal.TryParse(valLoading, out var dLoading)) numericUpDown10.Value = dLoading;
                 }
@@ -212,7 +212,7 @@ namespace QuestProject.Forms
                 if (data.TryGetValue("Axis Y", out var axisY))
                 {
                     if (axisY.TryGetValue("MaxSpeed", out var valMaxSpeed) && decimal.TryParse(valMaxSpeed, out var dMaxSpeed)) numericUpDown1.Value = dMaxSpeed;
-                    if (axisY.TryGetValue("LimitMin", out var valLimitMin) && decimal.TryParse(valLimitMin, out var dLimitMin)) numericUpDown2.Value = dLimitMin;
+                    if (axisY.TryGetValue("LimitMin", out var valLimitMin) && decimal.TryParse(valLimitMin, out var dLimitMin)) numericUpDown2.Value = Math.Abs(dLimitMin);
                     if (axisY.TryGetValue("LimitMax", out var valLimitMax) && decimal.TryParse(valLimitMax, out var dLimitMax)) numericUpDown3.Value = dLimitMax;
                     if (axisY.TryGetValue("LoadingPosition", out var valLoading) && decimal.TryParse(valLoading, out var dLoading)) numericUpDown4.Value = dLoading;
                 }
@@ -221,7 +221,7 @@ namespace QuestProject.Forms
                 if (data.TryGetValue("Axis Z", out var axisZ))
                 {
                     if (axisZ.TryGetValue("MaxSpeed", out var valMaxSpeed) && decimal.TryParse(valMaxSpeed, out var dMaxSpeed)) numericUpDown5.Value = dMaxSpeed;
-                    if (axisZ.TryGetValue("LimitMin", out var valLimitMin) && decimal.TryParse(valLimitMin, out var dLimitMin)) numericUpDown9.Value = dLimitMin;
+                    if (axisZ.TryGetValue("LimitMin", out var valLimitMin) && decimal.TryParse(valLimitMin, out var dLimitMin)) numericUpDown9.Value = Math.Abs(dLimitMin);
                     if (axisZ.TryGetValue("LimitMax", out var valLimitMax) && decimal.TryParse(valLimitMax, out var dLimitMax)) numericUpDown11.Value = dLimitMax;
                     if (axisZ.TryGetValue("LoadingPosition", out var valLoading) && decimal.TryParse(valLoading, out var dLoading)) numericUpDown12.Value = dLoading;
                 }
@@ -230,7 +230,7 @@ namespace QuestProject.Forms
                 if (data.TryGetValue("Axis T", out var axisT))
                 {
                     if (axisT.TryGetValue("MaxSpeed", out var valMaxSpeed) && decimal.TryParse(valMaxSpeed, out var dMaxSpeed)) numericUpDown13.Value = dMaxSpeed;
-                    if (axisT.TryGetValue("LimitMin", out var valLimitMin) && decimal.TryParse(valLimitMin, out var dLimitMin)) numericUpDown14.Value = dLimitMin;
+                    if (axisT.TryGetValue("LimitMin", out var valLimitMin) && decimal.TryParse(valLimitMin, out var dLimitMin)) numericUpDown14.Value = Math.Abs(dLimitMin);
                     if (axisT.TryGetValue("LimitMax", out var valLimitMax) && decimal.TryParse(valLimitMax, out var dLimitMax)) numericUpDown15.Value = dLimitMax;
                     if (axisT.TryGetValue("LoadingPosition", out var valLoading) && decimal.TryParse(valLoading, out var dLoading)) numericUpDown16.Value = dLoading;
                 }
