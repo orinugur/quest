@@ -12,6 +12,8 @@ namespace QuestProject.Common
         public double Acceleration { get; set; } = 500.0;
         public double Deceleration { get; set; } = 500.0;
         public double LoadingPosition { get; set; } = 0.0;
+        public double LimitMin { get; set; } = -9999.0;
+        public double LimitMax { get; set; } = 9999.0;
 
         // 상태값 (예: 원점 복귀 완료 여부, 알람 상태 등)
         public bool IsHomed { get; set; } = false;

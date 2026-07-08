@@ -39,6 +39,10 @@ namespace QuestProject.Common
                         GlobalData.AxisX.Speed = dMaxSpeed;
                     if (axisX.TryGetValue("LoadingPosition", out var valLoading) && double.TryParse(valLoading, out var dLoading)) 
                         GlobalData.AxisX.LoadingPosition = dLoading;
+                    if (axisX.TryGetValue("LimitMin", out var valLimitMin) && double.TryParse(valLimitMin, out var dLimitMin))
+                        GlobalData.AxisX.LimitMin = dLimitMin;
+                    if (axisX.TryGetValue("LimitMax", out var valLimitMax) && double.TryParse(valLimitMax, out var dLimitMax))
+                        GlobalData.AxisX.LimitMax = dLimitMax;
                 }
 
                 // Axis Y
@@ -48,6 +52,10 @@ namespace QuestProject.Common
                         GlobalData.AxisY.Speed = dMaxSpeed;
                     if (axisY.TryGetValue("LoadingPosition", out var valLoading) && double.TryParse(valLoading, out var dLoading)) 
                         GlobalData.AxisY.LoadingPosition = dLoading;
+                    if (axisY.TryGetValue("LimitMin", out var valLimitMin) && double.TryParse(valLimitMin, out var dLimitMin))
+                        GlobalData.AxisY.LimitMin = dLimitMin;
+                    if (axisY.TryGetValue("LimitMax", out var valLimitMax) && double.TryParse(valLimitMax, out var dLimitMax))
+                        GlobalData.AxisY.LimitMax = dLimitMax;
                 }
 
                 // Axis Z
@@ -57,6 +65,10 @@ namespace QuestProject.Common
                         GlobalData.AxisZ.Speed = dMaxSpeed;
                     if (axisZ.TryGetValue("LoadingPosition", out var valLoading) && double.TryParse(valLoading, out var dLoading)) 
                         GlobalData.AxisZ.LoadingPosition = dLoading;
+                    if (axisZ.TryGetValue("LimitMin", out var valLimitMin) && double.TryParse(valLimitMin, out var dLimitMin))
+                        GlobalData.AxisZ.LimitMin = dLimitMin;
+                    if (axisZ.TryGetValue("LimitMax", out var valLimitMax) && double.TryParse(valLimitMax, out var dLimitMax))
+                        GlobalData.AxisZ.LimitMax = dLimitMax;
                 }
 
                 // Axis T
@@ -66,6 +78,10 @@ namespace QuestProject.Common
                         GlobalData.AxisT.Speed = dMaxSpeed;
                     if (axisT.TryGetValue("LoadingPosition", out var valLoading) && double.TryParse(valLoading, out var dLoading)) 
                         GlobalData.AxisT.LoadingPosition = dLoading;
+                    if (axisT.TryGetValue("LimitMin", out var valLimitMin) && double.TryParse(valLimitMin, out var dLimitMin))
+                        GlobalData.AxisT.LimitMin = dLimitMin;
+                    if (axisT.TryGetValue("LimitMax", out var valLimitMax) && double.TryParse(valLimitMax, out var dLimitMax))
+                        GlobalData.AxisT.LimitMax = dLimitMax;
                 }
 
                 LogHelper.WriteLog("AxisController", "Configuration loaded and synchronized with GlobalData.");
