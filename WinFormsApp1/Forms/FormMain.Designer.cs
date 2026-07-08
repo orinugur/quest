@@ -42,6 +42,7 @@ namespace QuestProject.Forms
 
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             pnlBottom = new Panel();
             btnManual = new Button();
             btnLog = new Button();
@@ -147,6 +148,13 @@ namespace QuestProject.Forms
             Controls.Add(pnlBottom);
             Name = "FormMain";
             Text = "Form1";
+            // 
+            // uiTimer
+            // 
+            this.uiTimer = new System.Windows.Forms.Timer(this.components);
+            this.uiTimer.Interval = 100;
+            this.uiTimer.Tick += new System.EventHandler(this.UiTimer_Tick);
+
             pnlBottom.ResumeLayout(false);
             pnlContent.ResumeLayout(false);
             pnlContent.PerformLayout();
@@ -163,5 +171,6 @@ namespace QuestProject.Forms
         private Button btnSetup;
         private Button btnExit;
         private Label label1;
+        private System.Windows.Forms.Timer uiTimer;
     }
 }

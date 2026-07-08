@@ -180,6 +180,9 @@ namespace QuestProject.Forms
                 };
 
                 IniHelper.Save(filePath, data);
+                
+                // 메모리 상의 GlobalData 축 설정도 실시간 동기화
+                AxisController.LoadConfiguration(filePath);
             }
             catch (Exception ex)
             {
@@ -253,6 +256,8 @@ namespace QuestProject.Forms
                     }
                 }
 
+                // 메모리 상의 GlobalData 축 설정도 실시간 동기화
+                AxisController.LoadConfiguration(filePath);
             }
             catch (Exception ex)
             {

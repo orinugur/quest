@@ -87,6 +87,35 @@ namespace QuestProject.Forms
 
             // 프로그램 시작 로그
             LogHelper.WriteLog("system", "program start");
+
+            // Axis 설정 로드 및 로딩 위치로 이동 개시
+            AxisController.LoadConfiguration("config.ini");
+            AxisController.MoveToLoadingPosition();
+
+            // UI 실시간 모니터링 타이머 시작
+            uiTimer.Start();
+        }
+
+        private void UiTimer_Tick(object? sender, EventArgs e)
+        {
+            bool allAtLoading = true;
+            foreach (var axis in GlobalData.AllAxes)
+            {
+                if (Math.Abs(axis.CurrentPosition - axis.LoadingPosition) > 0.001)
+                {
+                    allAtLoading = false;
+                    break;
+                }
+            }
+
+            string status = allAtLoading ? "All Axes at Loading Position" : "Moving to Loading Position...";
+
+            label1.Text = $"Main Display ({status})\n" +
+                          $"----------------------------------------\n" +
+                          $"Axis X: {GlobalData.AxisX.CurrentPosition:F2} / {GlobalData.AxisX.LoadingPosition:F2} (Speed: {GlobalData.AxisX.Speed:F1})\n" +
+                          $"Axis Y: {GlobalData.AxisY.CurrentPosition:F2} / {GlobalData.AxisY.LoadingPosition:F2} (Speed: {GlobalData.AxisY.Speed:F1})\n" +
+                          $"Axis Z: {GlobalData.AxisZ.CurrentPosition:F2} / {GlobalData.AxisZ.LoadingPosition:F2} (Speed: {GlobalData.AxisZ.Speed:F1})\n" +
+                          $"Axis T: {GlobalData.AxisT.CurrentPosition:F2} / {GlobalData.AxisT.LoadingPosition:F2} (Speed: {GlobalData.AxisT.Speed:F1})";
         }
         
         // Form 종료시 실행
