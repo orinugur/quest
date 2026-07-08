@@ -108,14 +108,27 @@ namespace QuestProject.Forms
                 }
             }
 
-            string status = allAtLoading ? "All Axes at Loading Position" : "Moving to Loading Position...";
+            lblStatus.Text = allAtLoading ? "상태: All Axes at Loading Position" : "상태: Moving to Loading Position...";
 
-            label1.Text = $"Main Display ({status})\n" +
-                          $"----------------------------------------\n" +
-                          $"Axis X: {GlobalData.AxisX.CurrentPosition:F2} / {GlobalData.AxisX.LoadingPosition:F2} (Speed: {GlobalData.AxisX.Speed:F1})\n" +
-                          $"Axis Y: {GlobalData.AxisY.CurrentPosition:F2} / {GlobalData.AxisY.LoadingPosition:F2} (Speed: {GlobalData.AxisY.Speed:F1})\n" +
-                          $"Axis Z: {GlobalData.AxisZ.CurrentPosition:F2} / {GlobalData.AxisZ.LoadingPosition:F2} (Speed: {GlobalData.AxisZ.Speed:F1})\n" +
-                          $"Axis T: {GlobalData.AxisT.CurrentPosition:F2} / {GlobalData.AxisT.LoadingPosition:F2} (Speed: {GlobalData.AxisT.Speed:F1})";
+            // Axis X
+            txtXCurrent.Text = GlobalData.AxisX.CurrentPosition.ToString("F2");
+            txtXLoading.Text = GlobalData.AxisX.LoadingPosition.ToString("F2");
+            txtXSpeed.Text = GlobalData.AxisX.Speed.ToString("F1");
+
+            // Axis Y
+            txtYCurrent.Text = GlobalData.AxisY.CurrentPosition.ToString("F2");
+            txtYLoading.Text = GlobalData.AxisY.LoadingPosition.ToString("F2");
+            txtYSpeed.Text = GlobalData.AxisY.Speed.ToString("F1");
+
+            // Axis Z
+            txtZCurrent.Text = GlobalData.AxisZ.CurrentPosition.ToString("F2");
+            txtZLoading.Text = GlobalData.AxisZ.LoadingPosition.ToString("F2");
+            txtZSpeed.Text = GlobalData.AxisZ.Speed.ToString("F1");
+
+            // Axis T
+            txtTCurrent.Text = GlobalData.AxisT.CurrentPosition.ToString("F2");
+            txtTLoading.Text = GlobalData.AxisT.LoadingPosition.ToString("F2");
+            txtTSpeed.Text = GlobalData.AxisT.Speed.ToString("F1");
         }
         
         // Form 종료시 실행
