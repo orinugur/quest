@@ -30,24 +30,24 @@ namespace QuestProject.Forms
         {
             label9 = new Label();
             groupBox1 = new GroupBox();
-            button1 = new Button();
-            button2 = new Button();
-            button3 = new Button();
+            tableLayoutPanel2 = new TableLayoutPanel();
+            btnResetHome = new Button();
+            btnAutoRun = new Button();
+            btnAutoStop = new Button();
             groupBox2 = new GroupBox();
-            textBox1 = new TextBox();
+            tableLayoutPanel1 = new TableLayoutPanel();
+            textBox4 = new TextBox();
+            label4 = new Label();
             label1 = new Label();
+            textBox1 = new TextBox();
+            textBox3 = new TextBox();
+            label3 = new Label();
             label2 = new Label();
             textBox2 = new TextBox();
-            label3 = new Label();
-            textBox3 = new TextBox();
-            label4 = new Label();
-            textBox4 = new TextBox();
-            tableLayoutPanel1 = new TableLayoutPanel();
-            tableLayoutPanel2 = new TableLayoutPanel();
             groupBox1.SuspendLayout();
+            tableLayoutPanel2.SuspendLayout();
             groupBox2.SuspendLayout();
             tableLayoutPanel1.SuspendLayout();
-            tableLayoutPanel2.SuspendLayout();
             SuspendLayout();
             // 
             // label9
@@ -71,32 +71,51 @@ namespace QuestProject.Forms
             groupBox1.TabStop = false;
             groupBox1.Text = "Group";
             // 
-            // button1
+            // tableLayoutPanel2
             // 
-            button1.Location = new Point(3, 3);
-            button1.Name = "button1";
-            button1.Size = new Size(87, 23);
-            button1.TabIndex = 0;
-            button1.Text = "Auto Run";
-            button1.UseVisualStyleBackColor = true;
+            tableLayoutPanel2.ColumnCount = 1;
+            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            tableLayoutPanel2.Controls.Add(btnResetHome, 0, 2);
+            tableLayoutPanel2.Controls.Add(btnAutoRun, 0, 0);
+            tableLayoutPanel2.Controls.Add(btnAutoStop, 0, 1);
+            tableLayoutPanel2.Location = new Point(6, 22);
+            tableLayoutPanel2.Name = "tableLayoutPanel2";
+            tableLayoutPanel2.RowCount = 3;
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 48.1481476F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 51.8518524F));
+            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
+            tableLayoutPanel2.Size = new Size(105, 116);
+            tableLayoutPanel2.TabIndex = 6;
             // 
-            // button2
+            // btnResetHome
             // 
-            button2.Location = new Point(3, 38);
-            button2.Name = "button2";
-            button2.Size = new Size(87, 23);
-            button2.TabIndex = 1;
-            button2.Text = "Auto STOP";
-            button2.UseVisualStyleBackColor = true;
+            btnResetHome.Location = new Point(3, 75);
+            btnResetHome.Name = "btnResetHome";
+            btnResetHome.Size = new Size(87, 23);
+            btnResetHome.TabIndex = 2;
+            btnResetHome.Text = "Reset Home";
+            btnResetHome.UseVisualStyleBackColor = true;
+            btnResetHome.Click += btnResetHome_Click;
             // 
-            // button3
+            // btnAutoRun
             // 
-            button3.Location = new Point(3, 75);
-            button3.Name = "button3";
-            button3.Size = new Size(87, 23);
-            button3.TabIndex = 2;
-            button3.Text = "Reset Home";
-            button3.UseVisualStyleBackColor = true;
+            btnAutoRun.Location = new Point(3, 3);
+            btnAutoRun.Name = "btnAutoRun";
+            btnAutoRun.Size = new Size(87, 23);
+            btnAutoRun.TabIndex = 0;
+            btnAutoRun.Text = "Auto Run";
+            btnAutoRun.UseVisualStyleBackColor = true;
+            btnAutoRun.Click += btnAutoRun_Click;
+            // 
+            // btnAutoStop
+            // 
+            btnAutoStop.Location = new Point(3, 38);
+            btnAutoStop.Name = "btnAutoStop";
+            btnAutoStop.Size = new Size(87, 23);
+            btnAutoStop.TabIndex = 1;
+            btnAutoStop.Text = "Auto STOP";
+            btnAutoStop.UseVisualStyleBackColor = true;
+            btnAutoStop.Click += btnAutoStop_Click;
             // 
             // groupBox2
             // 
@@ -107,74 +126,6 @@ namespace QuestProject.Forms
             groupBox2.TabIndex = 5;
             groupBox2.TabStop = false;
             groupBox2.Text = "Axis";
-            // 
-            // textBox1
-            // 
-            textBox1.Location = new Point(52, 3);
-            textBox1.Name = "textBox1";
-            textBox1.ReadOnly = true;
-            textBox1.Size = new Size(79, 23);
-            textBox1.TabIndex = 0;
-            // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Location = new Point(3, 0);
-            label1.Name = "label1";
-            label1.Size = new Size(40, 15);
-            label1.TabIndex = 1;
-            label1.Text = "Axis X";
-            // 
-            // label2
-            // 
-            label2.AutoSize = true;
-            label2.Location = new Point(3, 28);
-            label2.Name = "label2";
-            label2.Size = new Size(40, 15);
-            label2.TabIndex = 3;
-            label2.Text = "Axis Y";
-            // 
-            // textBox2
-            // 
-            textBox2.Location = new Point(52, 31);
-            textBox2.Name = "textBox2";
-            textBox2.ReadOnly = true;
-            textBox2.Size = new Size(79, 23);
-            textBox2.TabIndex = 2;
-            // 
-            // label3
-            // 
-            label3.AutoSize = true;
-            label3.Location = new Point(3, 56);
-            label3.Name = "label3";
-            label3.Size = new Size(40, 15);
-            label3.TabIndex = 5;
-            label3.Text = "Axis Z";
-            // 
-            // textBox3
-            // 
-            textBox3.Location = new Point(52, 59);
-            textBox3.Name = "textBox3";
-            textBox3.ReadOnly = true;
-            textBox3.Size = new Size(79, 23);
-            textBox3.TabIndex = 4;
-            // 
-            // label4
-            // 
-            label4.AutoSize = true;
-            label4.Location = new Point(3, 84);
-            label4.Name = "label4";
-            label4.Size = new Size(39, 15);
-            label4.TabIndex = 7;
-            label4.Text = "Axis T";
-            // 
-            // textBox4
-            // 
-            textBox4.Location = new Point(52, 87);
-            textBox4.Name = "textBox4";
-            textBox4.ReadOnly = true;
-            textBox4.Size = new Size(79, 23);
-            textBox4.TabIndex = 6;
             // 
             // tableLayoutPanel1
             // 
@@ -199,21 +150,73 @@ namespace QuestProject.Forms
             tableLayoutPanel1.Size = new Size(134, 116);
             tableLayoutPanel1.TabIndex = 6;
             // 
-            // tableLayoutPanel2
+            // textBox4
             // 
-            tableLayoutPanel2.ColumnCount = 1;
-            tableLayoutPanel2.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
-            tableLayoutPanel2.Controls.Add(button3, 0, 2);
-            tableLayoutPanel2.Controls.Add(button1, 0, 0);
-            tableLayoutPanel2.Controls.Add(button2, 0, 1);
-            tableLayoutPanel2.Location = new Point(6, 22);
-            tableLayoutPanel2.Name = "tableLayoutPanel2";
-            tableLayoutPanel2.RowCount = 3;
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 48.1481476F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Percent, 51.8518524F));
-            tableLayoutPanel2.RowStyles.Add(new RowStyle(SizeType.Absolute, 43F));
-            tableLayoutPanel2.Size = new Size(105, 116);
-            tableLayoutPanel2.TabIndex = 6;
+            textBox4.Location = new Point(52, 87);
+            textBox4.Name = "textBox4";
+            textBox4.ReadOnly = true;
+            textBox4.Size = new Size(79, 23);
+            textBox4.TabIndex = 6;
+            // 
+            // label4
+            // 
+            label4.AutoSize = true;
+            label4.Location = new Point(3, 84);
+            label4.Name = "label4";
+            label4.Size = new Size(39, 15);
+            label4.TabIndex = 7;
+            label4.Text = "Axis T";
+            // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(3, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(40, 15);
+            label1.TabIndex = 1;
+            label1.Text = "Axis X";
+            // 
+            // textBox1
+            // 
+            textBox1.Location = new Point(52, 3);
+            textBox1.Name = "textBox1";
+            textBox1.ReadOnly = true;
+            textBox1.Size = new Size(79, 23);
+            textBox1.TabIndex = 0;
+            // 
+            // textBox3
+            // 
+            textBox3.Location = new Point(52, 59);
+            textBox3.Name = "textBox3";
+            textBox3.ReadOnly = true;
+            textBox3.Size = new Size(79, 23);
+            textBox3.TabIndex = 4;
+            // 
+            // label3
+            // 
+            label3.AutoSize = true;
+            label3.Location = new Point(3, 56);
+            label3.Name = "label3";
+            label3.Size = new Size(40, 15);
+            label3.TabIndex = 5;
+            label3.Text = "Axis Z";
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(3, 28);
+            label2.Name = "label2";
+            label2.Size = new Size(40, 15);
+            label2.TabIndex = 3;
+            label2.Text = "Axis Y";
+            // 
+            // textBox2
+            // 
+            textBox2.Location = new Point(52, 31);
+            textBox2.Name = "textBox2";
+            textBox2.ReadOnly = true;
+            textBox2.Size = new Size(79, 23);
+            textBox2.TabIndex = 2;
             // 
             // FormAuto
             // 
@@ -226,10 +229,10 @@ namespace QuestProject.Forms
             Name = "FormAuto";
             Text = "FormAuto";
             groupBox1.ResumeLayout(false);
+            tableLayoutPanel2.ResumeLayout(false);
             groupBox2.ResumeLayout(false);
             tableLayoutPanel1.ResumeLayout(false);
             tableLayoutPanel1.PerformLayout();
-            tableLayoutPanel2.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -238,9 +241,9 @@ namespace QuestProject.Forms
 
         private Label label9;
         private GroupBox groupBox1;
-        private Button button3;
-        private Button button2;
-        private Button button1;
+        private Button btnResetHome;
+        private Button btnAutoStop;
+        private Button btnAutoRun;
         private GroupBox groupBox2;
         private TextBox textBox1;
         private Label label4;

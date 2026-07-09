@@ -8,6 +8,21 @@ namespace QuestProject.Forms
         {
             InitializeComponent();
         }
+
+        private void btnAutoRun_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAutoStop_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnResetHome_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
 
