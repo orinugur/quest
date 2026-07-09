@@ -116,6 +116,19 @@ namespace QuestProject.Common
         }
 
         /// <summary>
+        /// 모든 축의 이동을 즉시 정지시킵니다.
+        /// </summary>
+        public static void Stop()
+        {
+            LogHelper.WriteLog("AxisController", "Stopping all axes immediately.");
+            foreach (var axis in GlobalData.AllAxes)
+            {
+                axis.TargetPosition = axis.CurrentPosition;
+            }
+            _updateTimer.Stop();
+        }
+
+        /// <summary>
         /// 이동 시뮬레이션 타이머를 가동합니다.
         /// </summary>
         private static void StartTimer()

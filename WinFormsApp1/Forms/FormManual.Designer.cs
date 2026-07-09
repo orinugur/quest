@@ -1,4 +1,4 @@
-#nullable enable
+﻿#nullable enable
 
 using System.Drawing;
 using System.Windows.Forms;
@@ -53,7 +53,7 @@ namespace QuestProject.Forms
             gbActions = new GroupBox();
             btnSyncMove = new Button();
             btnAsyncMove = new Button();
-            timerUpdate = new System.Windows.Forms.Timer(components);
+            uiTimer = new System.Windows.Forms.Timer(components);
             gbAxisSelection.SuspendLayout();
             gbMotionParams.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numTargetPosition).BeginInit();
@@ -263,10 +263,10 @@ namespace QuestProject.Forms
             btnAsyncMove.Text = "비동기 이동";
             btnAsyncMove.UseVisualStyleBackColor = true;
             // 
-            // timerUpdate
+            // uiTimer
             // 
-            timerUpdate.Enabled = true;
-            timerUpdate.Interval = 100;
+            uiTimer.Enabled = true;
+            uiTimer.Interval = 100;
             // 
             // FormManual
             // 
@@ -314,6 +314,6 @@ namespace QuestProject.Forms
         private GroupBox gbActions = null!;
         private Button btnSyncMove = null!;
         private Button btnAsyncMove = null!;
-        private System.Windows.Forms.Timer timerUpdate = null!;
+        private System.Windows.Forms.Timer uiTimer = null!;
     }
 }

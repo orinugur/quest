@@ -1,4 +1,4 @@
-#nullable enable
+﻿#nullable enable
 
 using System.Drawing;
 using System.Windows.Forms;
@@ -478,32 +478,24 @@ namespace QuestProject.Forms
             // 
             // button1
             // 
-            button1.BackColor = Color.SkyBlue;
-            button1.FlatAppearance.BorderColor = Color.Gray;
-            button1.FlatStyle = FlatStyle.Flat;
-            button1.Font = new Font("맑은 고딕", 12F, FontStyle.Bold);
             button1.Location = new Point(96, 250);
             button1.Name = "button1";
             button1.Size = new Size(84, 40);
             button1.TabIndex = 15;
             button1.TabStop = false;
             button1.Text = "ＬＯＡＤ";
-            button1.UseVisualStyleBackColor = false;
+            button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
             // btnSaveAxis
             // 
-            btnSaveAxis.BackColor = Color.SkyBlue;
-            btnSaveAxis.FlatAppearance.BorderColor = Color.Gray;
-            btnSaveAxis.FlatStyle = FlatStyle.Flat;
-            btnSaveAxis.Font = new Font("맑은 고딕", 12F, FontStyle.Bold);
             btnSaveAxis.Location = new Point(6, 250);
             btnSaveAxis.Name = "btnSaveAxis";
             btnSaveAxis.Size = new Size(84, 40);
             btnSaveAxis.TabIndex = 14;
             btnSaveAxis.TabStop = false;
             btnSaveAxis.Text = "ＳＡＶＥ";
-            btnSaveAxis.UseVisualStyleBackColor = false;
+            btnSaveAxis.UseVisualStyleBackColor = true;
             btnSaveAxis.Click += btnSaveAxis_Click;
             // 
             // tabPage2
@@ -570,31 +562,24 @@ namespace QuestProject.Forms
             // 
             // btnDeleteAllLogs
             // 
-            btnDeleteAllLogs.BackColor = Color.LightCoral;
-            btnDeleteAllLogs.FlatStyle = FlatStyle.Flat;
-            btnDeleteAllLogs.Font = new Font("맑은 고딕", 9.75F, FontStyle.Bold);
             btnDeleteAllLogs.Location = new Point(291, 78);
             btnDeleteAllLogs.Name = "btnDeleteAllLogs";
             btnDeleteAllLogs.Size = new Size(130, 30);
             btnDeleteAllLogs.TabIndex = 5;
             btnDeleteAllLogs.TabStop = false;
             btnDeleteAllLogs.Text = "전체 로그 삭제";
-            btnDeleteAllLogs.UseVisualStyleBackColor = false;
+            btnDeleteAllLogs.UseVisualStyleBackColor = true;
             btnDeleteAllLogs.Click += btnDeleteAllLogs_Click;
             // 
             // btnSaveLog
             // 
-            btnSaveLog.BackColor = Color.SkyBlue;
-            btnSaveLog.FlatAppearance.BorderColor = Color.Gray;
-            btnSaveLog.FlatStyle = FlatStyle.Flat;
-            btnSaveLog.Font = new Font("맑은 고딕", 12F, FontStyle.Bold);
             btnSaveLog.Location = new Point(201, 78);
             btnSaveLog.Name = "btnSaveLog";
             btnSaveLog.Size = new Size(84, 30);
             btnSaveLog.TabIndex = 6;
             btnSaveLog.TabStop = false;
             btnSaveLog.Text = "ＳＡＶＥ";
-            btnSaveLog.UseVisualStyleBackColor = false;
+            btnSaveLog.UseVisualStyleBackColor = true;
             btnSaveLog.Click += btnSaveAxis_Click;
             // 
             // label9

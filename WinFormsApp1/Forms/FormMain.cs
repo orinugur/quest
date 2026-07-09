@@ -13,49 +13,57 @@ namespace QuestProject.Forms
                 this.FormClosed += FormMain_FormClosed;
             }
 
+        private FormAuto? _formAuto;
+        private FormManual? _formManual;
+        private FormLog? _formLog;
+        private FormSetup? _formSetup;
         private Form? activeForm = null;
 
         private void ShowChildForm(Form childForm)
         {
-            // 1. 이미 열려있는 폼이 있다면 닫고 제거 후 해제합니다.
+            // 1. 이미 열려있는 폼이 있다면 화면에서 숨김 처리합니다.
             if (activeForm != null)
             {
-                activeForm.Close();
-                pnlContent.Controls.Remove(activeForm);
-                activeForm.Dispose();
+                activeForm.Hide();
             }
 
-            // 2. 새로운 폼 설정 및 속성 변경
-            activeForm = childForm;
-            childForm.TopLevel = false;
-            childForm.FormBorderStyle = FormBorderStyle.None;
-            childForm.Dock = DockStyle.Fill;
+            // 2. 새로운 폼이 패널에 등록되지 않은 경우 추가합니다.
+            if (!pnlContent.Controls.Contains(childForm))
+            {
+                childForm.TopLevel = false;
+                childForm.FormBorderStyle = FormBorderStyle.None;
+                childForm.Dock = DockStyle.Fill;
+                pnlContent.Controls.Add(childForm);
+            }
 
-            // 3. pnlContent에 추가하고 띄우기
-            pnlContent.Controls.Add(childForm);
+            // 3. 폼 활성화 및 표시
+            activeForm = childForm;
             childForm.BringToFront();
             childForm.Show();
         }
 
         private void btnAuto_Click(object sender, EventArgs e)
         {
-            ShowChildForm(new FormAuto());
+            if (_formAuto == null || _formAuto.IsDisposed) _formAuto = new FormAuto();
+            ShowChildForm(_formAuto);
         }
 
         private void btnManual_Click(object sender, EventArgs e)
         {
-            ShowChildForm(new FormManual());
+            if (_formManual == null || _formManual.IsDisposed) _formManual = new FormManual();
+            ShowChildForm(_formManual);
         }
 
         private void btnLog_Click(object sender, EventArgs e)
         {
-            ShowChildForm(new FormLog());
+            if (_formLog == null || _formLog.IsDisposed) _formLog = new FormLog();
+            ShowChildForm(_formLog);
         }
 
         private void btnSetup_Click(object sender, EventArgs e)
         {
-            ShowChildForm(new FormSetup());
-
+            if (_formSetup == null || _formSetup.IsDisposed) _formSetup = new FormSetup();
+            ShowChildForm(_formSetup);
         }
 
         private void btnExit_Click(object sender, EventArgs e)

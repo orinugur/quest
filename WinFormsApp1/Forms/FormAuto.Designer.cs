@@ -1,4 +1,4 @@
-namespace QuestProject.Forms
+ï»¿namespace QuestProject.Forms
 {
     partial class FormAuto
     {
@@ -28,6 +28,8 @@ namespace QuestProject.Forms
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
+            uiTimer = new System.Windows.Forms.Timer(components);
             label9 = new Label();
             groupBox1 = new GroupBox();
             tableLayoutPanel2 = new TableLayoutPanel();
@@ -50,13 +52,18 @@ namespace QuestProject.Forms
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
+            // uiTimer
+            // 
+            uiTimer.Enabled = true;
+            uiTimer.Tick += UiTimer_Tick;
+            // 
             // label9
             // 
             label9.AutoSize = true;
-            label9.Font = new Font("¸¼Àº °íµñ", 20F);
+            label9.Font = new Font("Microsoft Sans Serif", 20F);
             label9.Location = new Point(12, 9);
             label9.Name = "label9";
-            label9.Size = new Size(76, 37);
+            label9.Size = new Size(70, 31);
             label9.TabIndex = 3;
             label9.Text = "Auto";
             label9.TextAlign = ContentAlignment.TopCenter;
@@ -255,5 +262,6 @@ namespace QuestProject.Forms
         private Label label1;
         private TableLayoutPanel tableLayoutPanel1;
         private TableLayoutPanel tableLayoutPanel2;
+        private System.Windows.Forms.Timer uiTimer;
     }
 }

@@ -18,7 +18,7 @@ namespace QuestProject.Forms
 
             btnAsyncMove.Click += BtnAsyncMove_Click;
             btnSyncMove.Click += BtnSyncMove_Click;
-            timerUpdate.Tick += TimerUpdate_Tick;
+            uiTimer.Tick += TimerUpdate_Tick;
 
             this.Load += FormManual_Load;
         }
@@ -26,7 +26,7 @@ namespace QuestProject.Forms
         private void FormManual_Load(object? sender, EventArgs e)
         {
             UpdateSelectedAxisInfo();
-            timerUpdate.Start();
+            uiTimer.Start();
         }
 
         private void RbAxis_CheckedChanged(object? sender, EventArgs e)
@@ -87,6 +87,14 @@ namespace QuestProject.Forms
 
         private void MoveAxis(bool isSync)
         {
+            // 만약 자동 운전이 실행 중이라면 강제 정지
+            if (GlobalData.IsRunning)
+            {
+                AxisController.Stop();
+                GlobalData.IsRunning = false;
+                LogHelper.WriteLog("Manual", "Manual movement triggered. Forced Auto Run to stop.");
+            }
+
             var axis = GetSelectedAxis();
             if (axis == null) return;
 
