@@ -12,6 +12,7 @@ namespace QuestProject.Common
     {
         private static System.Windows.Forms.Timer _updateTimer;
         private static DateTime _lastUpdateTime;
+        private static readonly System.Collections.Generic.Dictionary<AxisData, double> _axisActiveSpeeds = new();
 
         static AxisController()
         {
@@ -93,15 +94,16 @@ namespace QuestProject.Common
         }
 
         /// <summary>
-        /// 특정 축을 지정된 목표 위치로 시간에 따라 이동시킵니다.
+        /// 특정 축을 지정된 목표 위치로 지정 속도로 이동시킵니다.
         /// </summary>
-        public static void MoveTo(AxisData axis, double targetPosition)
+        public static void MoveTo(AxisData axis, double targetPosition, double speed)
         {
             axis.TargetPosition = targetPosition;
-            LogHelper.WriteLog("AxisController", $"Starting move on {axis.Name} to {targetPosition} (Speed: {axis.Speed})");
+            _axisActiveSpeeds[axis] = speed;
+            LogHelper.WriteLog("AxisController", $"Starting move on {axis.Name} to {targetPosition} (Speed: {speed})");
             StartTimer();
         }
-
+ 
         /// <summary>
         /// 모든 축을 설정된 LoadingPosition으로 이동시킵니다.
         /// </summary>
@@ -111,6 +113,7 @@ namespace QuestProject.Common
             foreach (var axis in GlobalData.AllAxes)
             {
                 axis.TargetPosition = axis.LoadingPosition;
+                _axisActiveSpeeds[axis] = axis.Speed;
             }
             StartTimer();
         }
@@ -162,7 +165,12 @@ namespace QuestProject.Common
                 {
                     anyMoving = true;
                     double direction = diff > 0 ? 1.0 : -1.0;
-                    double step = axis.Speed * deltaTime;
+
+                    if (!_axisActiveSpeeds.TryGetValue(axis, out double speed))
+                    {
+                        speed = axis.Speed;
+                    }
+                    double step = speed * deltaTime;
 
                     // 만약 이동 거리가 남은 거리보다 크다면 목표 위치로 설정 완료
                     if (Math.Abs(diff) <= step)

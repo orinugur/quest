@@ -57,10 +57,10 @@ namespace QuestProject.Forms
                             // 다음 스텝으로 이동
                             if (recipeSteps.TryGetValue(currentStep, out var nextStep))
                             {
-                                AxisController.MoveTo(GlobalData.AxisX, nextStep["X"]);
-                                AxisController.MoveTo(GlobalData.AxisY, nextStep["Y"]);
-                                AxisController.MoveTo(GlobalData.AxisZ, nextStep["Z"]);
-                                AxisController.MoveTo(GlobalData.AxisT, nextStep["T"]);
+                                AxisController.MoveTo(GlobalData.AxisX, nextStep["X"], nextStep["X_Speed"]);
+                                AxisController.MoveTo(GlobalData.AxisY, nextStep["Y"], nextStep["Y_Speed"]);
+                                AxisController.MoveTo(GlobalData.AxisZ, nextStep["Z"], nextStep["Z_Speed"]);
+                                AxisController.MoveTo(GlobalData.AxisT, nextStep["T"], nextStep["T_Speed"]);
                                 LogHelper.WriteLog("Auto", $"Moving to Step {currentStep}. Targets - X: {nextStep["X"]:F2}, Y: {nextStep["Y"]:F2}, Z: {nextStep["Z"]:F2}, T: {nextStep["T"]:F2}");
                             }
                         }
@@ -72,10 +72,10 @@ namespace QuestProject.Forms
                         currentStep = 1;
                         if (recipeSteps.TryGetValue(1, out var step1))
                         {
-                            AxisController.MoveTo(GlobalData.AxisX, step1["X"]);
-                            AxisController.MoveTo(GlobalData.AxisY, step1["Y"]);
-                            AxisController.MoveTo(GlobalData.AxisZ, step1["Z"]);
-                            AxisController.MoveTo(GlobalData.AxisT, step1["T"]);
+                            AxisController.MoveTo(GlobalData.AxisX, step1["X"], step1["X_Speed"]);
+                            AxisController.MoveTo(GlobalData.AxisY, step1["Y"], step1["Y_Speed"]);
+                            AxisController.MoveTo(GlobalData.AxisZ, step1["Z"], step1["Z_Speed"]);
+                            AxisController.MoveTo(GlobalData.AxisT, step1["T"], step1["T_Speed"]);
                             LogHelper.WriteLog("Auto", $"Homing complete. Restarting sequence from Step 1. Targets - X: {step1["X"]:F2}, Y: {step1["Y"]:F2}, Z: {step1["Z"]:F2}, T: {step1["T"]:F2}");
                         }
                     }
@@ -100,7 +100,11 @@ namespace QuestProject.Forms
                         { "X", (i * 10.0).ToString("F1") },
                         { "Y", (i * 10.0).ToString("F1") },
                         { "Z", (i * 10.0).ToString("F1") },
-                        { "T", (i * 10.0).ToString("F1") }
+                        { "T", (i * 10.0).ToString("F1") },
+                        { "X_Speed", "100.0" },
+                        { "Y_Speed", "100.0" },
+                        { "Z_Speed", "100.0" },
+                        { "T_Speed", "100.0" }
                     };
                 }
                 IniHelper.Save(recipePath, defaultRecipe);
@@ -114,7 +118,8 @@ namespace QuestProject.Forms
             {
                 var stepData = new Dictionary<string, double>(StringComparer.OrdinalIgnoreCase)
                 {
-                    { "X", 0 }, { "Y", 0 }, { "Z", 0 }, { "T", 0 }
+                    { "X", 0 }, { "Y", 0 }, { "Z", 0 }, { "T", 0 },
+                    { "X_Speed", 100 }, { "Y_Speed", 100 }, { "Z_Speed", 100 }, { "T_Speed", 100 }
                 };
 
                 Dictionary<string, string>? section = null;
@@ -127,6 +132,11 @@ namespace QuestProject.Forms
                     if (section.TryGetValue("Y", out var valY) && double.TryParse(valY, out double y)) stepData["Y"] = y;
                     if (section.TryGetValue("Z", out var valZ) && double.TryParse(valZ, out double z)) stepData["Z"] = z;
                     if (section.TryGetValue("T", out var valT) && double.TryParse(valT, out double t)) stepData["T"] = t;
+
+                    stepData["X_Speed"] = section.TryGetValue("X_Speed", out var valXSpd) && double.TryParse(valXSpd, out double xSpd) ? xSpd : GlobalData.AxisX.Speed;
+                    stepData["Y_Speed"] = section.TryGetValue("Y_Speed", out var valYSpd) && double.TryParse(valYSpd, out double ySpd) ? ySpd : GlobalData.AxisY.Speed;
+                    stepData["Z_Speed"] = section.TryGetValue("Z_Speed", out var valZSpd) && double.TryParse(valZSpd, out double zSpd) ? zSpd : GlobalData.AxisZ.Speed;
+                    stepData["T_Speed"] = section.TryGetValue("T_Speed", out var valTSpd) && double.TryParse(valTSpd, out double tSpd) ? tSpd : GlobalData.AxisT.Speed;
                 }
                 recipeSteps[i] = stepData;
             }
@@ -136,10 +146,10 @@ namespace QuestProject.Forms
 
             if (recipeSteps.TryGetValue(1, out var step1))
             {
-                AxisController.MoveTo(GlobalData.AxisX, step1["X"]);
-                AxisController.MoveTo(GlobalData.AxisY, step1["Y"]);
-                AxisController.MoveTo(GlobalData.AxisZ, step1["Z"]);
-                AxisController.MoveTo(GlobalData.AxisT, step1["T"]);
+                AxisController.MoveTo(GlobalData.AxisX, step1["X"], step1["X_Speed"]);
+                AxisController.MoveTo(GlobalData.AxisY, step1["Y"], step1["Y_Speed"]);
+                AxisController.MoveTo(GlobalData.AxisZ, step1["Z"], step1["Z_Speed"]);
+                AxisController.MoveTo(GlobalData.AxisT, step1["T"], step1["T_Speed"]);
 
                 GlobalData.IsRunning = true;
                 LogHelper.WriteLog("Auto", $"Auto Run started. Step 1 targets - X: {step1["X"]:F2}, Y: {step1["Y"]:F2}, Z: {step1["Z"]:F2}, T: {step1["T"]:F2}");

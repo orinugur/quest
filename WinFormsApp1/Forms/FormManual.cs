@@ -6,6 +6,8 @@ namespace QuestProject.Forms
 {
     public partial class FormManual : Form
     {
+        private bool _isMovingSync = false;
+
         public FormManual()
         {
             InitializeComponent();
@@ -39,6 +41,8 @@ namespace QuestProject.Forms
 
         private void TimerUpdate_Tick(object? sender, EventArgs e)
         {
+            if (_isMovingSync) return;
+
             var axis = GetSelectedAxis();
             if (axis != null)
             {
@@ -102,9 +106,6 @@ namespace QuestProject.Forms
             double speed = (double)numSpeed.Value;
             double targetInput = (double)numTargetPosition.Value;
 
-            // 속도 설정 반영
-            axis.Speed = speed;
-
             // 최종 위치값 계산
             double finalPos = currentPos;
             string moveModeStr = "";
@@ -138,11 +139,13 @@ namespace QuestProject.Forms
             {
                 try
                 {
+                    _isMovingSync = true;
+
                     // UI 조작 방지를 위해 컨트롤 비활성화
                     SetControlsEnabled(false);
 
                     // 축 이동
-                    AxisController.MoveTo(axis, finalPos);
+                    AxisController.MoveTo(axis, finalPos, speed);
 
                     // 동기식 대기 루프
                     while (Math.Abs(axis.CurrentPosition - finalPos) > 0.001)
@@ -153,6 +156,11 @@ namespace QuestProject.Forms
                 }
                 finally
                 {
+                    _isMovingSync = false;
+
+                    // 최종 UI 값 업데이트
+                    UpdateSelectedAxisInfo();
+
                     // 컨트롤 활성화 복구
                     SetControlsEnabled(true);
                 }
@@ -160,7 +168,7 @@ namespace QuestProject.Forms
             else
             {
                 // 비동기식 이동 개시
-                AxisController.MoveTo(axis, finalPos);
+                AxisController.MoveTo(axis, finalPos, speed);
             }
         }
 
